@@ -1,9 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { GridDataResult } from '@progress/kendo-angular-grid';
-import { SortDescriptor } from '@progress/kendo-data-query';
-import { categories } from '../../../app/data.categories';
-import { Observable } from 'rxjs';
-import { ProductService } from 'src/app/product.service';
+import { categories } from '../../constants/categories.const';
 
 @Component({
   selector: 'app-dropdown',
@@ -31,5 +27,5 @@ export class DropdownComponent implements OnInit {
       skip: this.skip
     };
     this.filterEmitter.emit(emitObj);
-  } 
+  }
 }
