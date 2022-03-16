@@ -11,12 +11,36 @@ import { GridComponent } from './components/grid/grid.component';
 import { TableComponent } from './components/table/table.component';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from "@progress/kendo-angular-label";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { UserComponent } from './components/user/user.component';
+import { IconsModule } from '@progress/kendo-angular-icons';
+import { TooltipsModule } from '@progress/kendo-angular-tooltip';
+
+
 
 @NgModule({
-  declarations: [AppComponent, DropdownComponent, GridComponent, TableComponent],
-  imports: [BrowserModule, AppRoutingModule, DropDownsModule, BrowserAnimationsModule,
-    GridModule, InputsModule, LabelModule, FormsModule],
+  declarations: [
+    AppComponent,
+    DropdownComponent,
+    GridComponent,
+    TableComponent,
+    UserComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    DropDownsModule,
+    BrowserAnimationsModule,
+    GridModule,
+    InputsModule,
+    LabelModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IconsModule,
+    TooltipsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

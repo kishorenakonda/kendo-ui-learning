@@ -1,0 +1,44 @@
+<!-- Add user -->
+<div class="">
+    <button kendoButton (click)="onAddUser()" class="text-right"> Add User </button>
+</div>
+
+<div class="adduser m-t-10" *ngIf="flags.displayUserForm">
+    <form class="k-form" [formGroup]="userForm">
+        <fieldset class="k-form-fieldset">
+            <legend class="k-form-legend"> Add user </legend>
+            <kendo-label [for]="username" text="Username"></kendo-label>
+            <kendo-textbox formControlName="username" [clearButton]="true" #username required></kendo-textbox>
+
+            <kendo-label [for]="userage" text="Age"></kendo-label>
+            <kendo-numerictextbox [min]="1" [max]="100" formControlName="userage" #userage required>
+            </kendo-numerictextbox>
+
+            <div class="k-form-buttons">
+                <button class="k-button k-primary" (click)="onCreateUser()"> Create User </button>
+                <button class="k-button" (click)="onClearForm()"> Clear </button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<!-- List Users -->
+<div class="list-users p-t-10" *ngIf="flags.displayUserList">
+    <kendo-grid [data]="(userList | async)!" [height]="200" [skip]="skip" [pageable]="true" [pageSize]="pageSize"
+        (pageChange)="onChangePageForUser($event)" [sortable]="true" [sort]="sortDescriptor"
+        (sortChange)="onSortUser($event)" [filter]="filter" [filterable]="true" (filterChange)="filterChange($event)">
+        <!-- once sort is enabled then styling is not working -->
+        <!-- [headerStyle]="{'text-align': 'center'}" [style]="{'text-align': 'center'}" -->
+
+        <kendo-grid-column field="id" title="ID"> </kendo-grid-column>
+        <kendo-grid-column field="name" title="Name"> </kendo-grid-column>
+        <kendo-grid-column field="age" title="Age" filter="numeric"> </kendo-grid-column>
+        <kendo-grid-column title="Actions">
+            <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                <span class="k-icon k-i-edit k-color-info m-r-10 cursor-pointer"></span>
+                <span class="k-icon k-i-delete k-color-error cursor-pointer" (click)="onDeleteUser(rowIndex, dataItem)"
+                    title="Delete User" kendoTooltip style="text-align: center"></span>
+            </ng-template>
+        </kendo-grid-column>
+    </kendo-grid>
+</div>
