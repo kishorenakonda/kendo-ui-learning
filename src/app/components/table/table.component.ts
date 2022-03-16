@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductService } from './services/product.service';
+
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [ProductService]
+  selector: 'app-table',
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.css']
 })
-export class AppComponent {
+export class TableComponent implements OnInit {
+
   public filterObj: any;
   public showTable!: boolean;
   public model = {
@@ -30,10 +30,8 @@ export class AppComponent {
     }, 100);
   }
 
-  onChangeTableType() {
-    console.log("tableType", this.model);
-    if (this.model.tableType.toLowerCase() === 'plaintable') {
-      this.router.navigate(['/table']);
-    }
+  ngOnInit(): void {
+
   }
+
 }

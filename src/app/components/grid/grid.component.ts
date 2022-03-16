@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { SortDescriptor } from '@progress/kendo-data-query';
 import { Observable } from 'rxjs';
-import { ProductService } from '../../../app/product.service';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-grid',
