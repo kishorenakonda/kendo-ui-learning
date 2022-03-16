@@ -13,7 +13,7 @@ export class UserService {
 
     constructor(private httpService: HttpService) { }
 
-    getUsersListService(successFn: Function, errorFn: Function) {
+    getUser(successFn: Function, errorFn: Function) {
         return this.httpService.get(this.userServiceUrls.list, successFn, errorFn);
     }
 
@@ -23,5 +23,9 @@ export class UserService {
 
     deleteUser(userId: number, successFn: Function, errorFn: Function) {
         return this.httpService.delete(`${this.userServiceUrls.list + '/' + userId}`, successFn, errorFn);
+    }
+
+    updateUser(user: any, successFn: Function, errorFn: Function) {
+        return this.httpService.put(`${this.userServiceUrls.list + '/' + user.id}`, user, successFn, errorFn);
     }
 }

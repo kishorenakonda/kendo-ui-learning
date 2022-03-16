@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { CompositeFilterDescriptor, DataResult, filterBy, orderBy, SortDescriptor } from '@progress/kendo-data-query';
 import { UserService } from 'src/app/services/user.service';
 import { Observable, of } from 'rxjs';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-user',
@@ -58,7 +59,7 @@ export class UserComponent implements OnInit {
 
   getUsersList() {
     this.flags.displayUserList = false;
-    this.userService.getUsersListService(
+    this.userService.getUser(
       (response: any) => {
         this.allUserList = response;
         this.flags.displayUserList = true;
@@ -119,8 +120,45 @@ export class UserComponent implements OnInit {
     this.userForm.reset();
   }
 
-  onDeleteUser(rowIndex: number, dataItem: any) {
-    console.log(rowIndex);
+  public onEditUser({ sender, rowIndex, dataItem }: any) {
+    const editUserForm = new FormGroup({
+      // 'id': new FormControl(dataItem.id),
+      'name': new FormControl(dataItem.name, Validators.required),
+      'age': new FormControl(dataItem.age)
+    });
+
+    // make the row as edit mode, with the `FormGroup` build above
+    sender.editRow(rowIndex, editUserForm);
+  }
+
+  public onUpdateUser({ sender, rowIndex, formGroup, dataItem }: any) {
+    // collect the current state of the form
+    const user: User = formGroup.value;
+    user['id'] = dataItem.id;
+    console.log("user", user);
+    console.log("dataItem", dataItem);
+
+    // update the data source
+    this.userService.updateUser(user,
+      (response: any) => {
+        console.log(response);
+        this.getUsersList();
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
+
+    // close the editor, that is, revert the row back into view mode
+    sender.closeRow(rowIndex);
+  }
+
+  public onCancel({ sender, rowIndex }: any) {
+    // close the editor for the given row
+    sender.closeRow(rowIndex)
+  }
+
+  public onDeleteUser({ dataItem }: any) {
     console.log(dataItem);
     this.userService.deleteUser(
       dataItem.id,

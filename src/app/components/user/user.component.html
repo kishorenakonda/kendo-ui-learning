@@ -24,21 +24,45 @@
 
 <!-- List Users -->
 <div class="list-users p-t-10" *ngIf="flags.displayUserList">
-    <kendo-grid [data]="(userList | async)!" [height]="200" [skip]="skip" [pageable]="true" [pageSize]="pageSize"
+    <kendo-grid [data]="(userList | async)!" [height]="250" [skip]="skip" [pageable]="true" [pageSize]="pageSize"
         (pageChange)="onChangePageForUser($event)" [sortable]="true" [sort]="sortDescriptor"
-        (sortChange)="onSortUser($event)" [filter]="filter" [filterable]="true" (filterChange)="filterChange($event)">
+        (sortChange)="onSortUser($event)" [filter]="filter" [filterable]="true" (filterChange)="filterChange($event)"
+        (edit)="onEditUser($event)" (save)="onUpdateUser($event)" (cancel)="onCancel($event)"
+        (remove)="onDeleteUser($event)">
+        <!-- (add)="addHandler($event)" -->
+
         <!-- once sort is enabled then styling is not working -->
         <!-- [headerStyle]="{'text-align': 'center'}" [style]="{'text-align': 'center'}" -->
 
+        <kendo-grid-column title="S.No">
+            <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{rowIndex + 1}}
+            </ng-template>
+        </kendo-grid-column>
         <kendo-grid-column field="id" title="ID"> </kendo-grid-column>
         <kendo-grid-column field="name" title="Name"> </kendo-grid-column>
-        <kendo-grid-column field="age" title="Age" filter="numeric"> </kendo-grid-column>
-        <kendo-grid-column title="Actions">
+        <kendo-grid-column field="age" title="Age" filter="numeric" editor="numeric"> </kendo-grid-column>
+
+        <!-- <kendo-grid-column title="Actions">
             <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                 <span class="k-icon k-i-edit k-color-info m-r-10 cursor-pointer"></span>
                 <span class="k-icon k-i-delete k-color-error cursor-pointer" (click)="onDeleteUser(rowIndex, dataItem)"
                     title="Delete User" kendoTooltip style="text-align: center"></span>
             </ng-template>
-        </kendo-grid-column>
+        </kendo-grid-column> -->
+
+        <!-- For actions we are using grid Actions code -->
+        <kendo-grid-command-column title="Actions">
+            <ng-template kendoGridCellTemplate let-isNew="isNew">
+                <!-- edit command, will be visible when not in edit mode -->
+                <button kendoGridEditCommand [primary]="true"> Edit </button>
+                <!-- remove command, will be visible when not in edit mode -->
+                <button kendoGridRemoveCommand> Delete </button>
+                <!-- save command, will be visible when in edit mode -->
+                <button kendoGridSaveCommand> {{ isNew ? 'Add' : 'Update' }} </button>
+                <!-- cancel command, will be visible when in edit mode -->
+                <button kendoGridCancelCommand> {{ isNew ? 'Discard changes' : 'Cancel' }} </button>
+            </ng-template>
+        </kendo-grid-command-column>
     </kendo-grid>
 </div>
