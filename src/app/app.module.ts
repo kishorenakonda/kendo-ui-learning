@@ -16,6 +16,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
 import { IconsModule } from '@progress/kendo-angular-icons';
 import { TooltipsModule } from '@progress/kendo-angular-tooltip';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import 'hammerjs';
+import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
+
+
+
 
 
 
@@ -39,7 +45,9 @@ import { TooltipsModule } from '@progress/kendo-angular-tooltip';
     FormsModule,
     ReactiveFormsModule,
     IconsModule,
-    TooltipsModule
+    TooltipsModule,
+    ChartsModule,
+    ExcelExportModule
   ],
   providers: [],
   bootstrap: [AppComponent]

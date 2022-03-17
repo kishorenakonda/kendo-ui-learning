@@ -1,6 +1,26 @@
+<!-- User Management -->
+<div class="m-tb-10">
+    <h2> Welcome to User Management </h2>
+</div>
+
 <!-- Add user -->
 <div class="">
-    <button kendoButton (click)="onAddUser()" class="text-right"> Add User </button>
+    <button kendoButton (click)="onAddUser()" class="text-right m-r-10"> Add User </button>
+    <button kendoButton type="button" (click)="excelexport.save()" class="text-right">
+        Export To Excel
+    </button>
+</div>
+
+<!-- export excel -->
+<div class="">
+    <kendo-excelexport [data]="allUserList" fileName="User.xlsx" #excelexport>
+        <kendo-excelexport-column field="id" title="ID">
+        </kendo-excelexport-column>
+        <kendo-excelexport-column field="name" title="Name">
+        </kendo-excelexport-column>
+        <kendo-excelexport-column field="age" title="Age">
+        </kendo-excelexport-column>
+    </kendo-excelexport>
 </div>
 
 <div class="adduser m-t-10" *ngIf="flags.displayUserForm">
@@ -65,4 +85,18 @@
             </ng-template>
         </kendo-grid-command-column>
     </kendo-grid>
+</div>
+
+<!-- Bar Chart -->
+<div class="m-t-10" *ngIf="flags.displayBarChart">
+    <button kendoButton (click)="exportChart()">Export as Image</button>
+    <kendo-chart #chart style="width: 300px; height: 300px;">
+        <kendo-chart-tooltip format="{0}"></kendo-chart-tooltip>
+        <kendo-chart-series>
+            <!-- field - yaxis, categoryField - xaxis -->
+            <kendo-chart-series-item type="column" [data]="barchartData" [labels]="seriesLabels" field="age"
+                categoryField="name">
+            </kendo-chart-series-item>
+        </kendo-chart-series>
+    </kendo-chart>
 </div>

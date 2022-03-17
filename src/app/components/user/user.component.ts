@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { CompositeFilterDescriptor, DataResult, filterBy, orderBy, SortDescriptor } from '@progress/kendo-data-query';
 import { UserService } from 'src/app/services/user.service';
 import { Observable, of } from 'rxjs';
 import { User } from 'src/app/models/user.model';
+import { ChartComponent, SeriesLabels } from '@progress/kendo-angular-charts';
+import { AppSharedService } from 'src/app/services/appshared.service';
+import { saveAs } from "@progress/kendo-file-saver";
 
 @Component({
   selector: 'app-user',
@@ -17,7 +20,9 @@ export class UserComponent implements OnInit {
   public userList !: Observable<GridDataResult>;
   public flags: any = {
     displayUserForm: Boolean,
-    displayUserList: Boolean
+    displayUserList: Boolean,
+    displayBarChart: Boolean,
+    displayPieChart: Boolean
   };
 
   // pagination
@@ -44,12 +49,24 @@ export class UserComponent implements OnInit {
     this.loadUserGridItems(this.filteredUserList);
   }
 
-  constructor(private userService: UserService) { }
+  // charts
+  barchartData: any = [];
+  public seriesLabels: SeriesLabels = {
+    visible: true
+  };
+  pieChartData: any = [];
+
+  @ViewChild("chart")
+  private chart !: ChartComponent;
+
+  constructor(private userService: UserService, private appSharedService: AppSharedService) { }
 
   ngOnInit(): void {
     this.getUsersList();
     this.flags.displayUserForm = false;
     this.flags.displayUserList = false;
+    this.flags.displayBarChart = false;
+    this.flags.displayPieChart = false;
   }
 
   public userForm: FormGroup = new FormGroup({
@@ -64,6 +81,7 @@ export class UserComponent implements OnInit {
         this.allUserList = response;
         this.flags.displayUserList = true;
         this.loadUserGridItems(this.allUserList);
+        this.loadBarChart();
       },
       (error: any) => {
         console.error(error);
@@ -97,8 +115,9 @@ export class UserComponent implements OnInit {
   onCreateUser() {
     this.userForm.markAllAsTouched();
     console.log("userForm", this.userForm);
+    const userlistSize = this.allUserList.length;
     const postJson = {
-      'id': this.allUserList.length + 1,
+      'id': this.allUserList[userlistSize - 1].id + 1,
       'name': this.userForm.get("username")?.value,
       'age': this.userForm.get("userage")?.value,
     }
@@ -170,6 +189,23 @@ export class UserComponent implements OnInit {
         console.error(error);
       }
     )
+  }
+
+  loadBarChart() {
+    this.barchartData = [];
+    this.allUserList.forEach((user: { name: any; age: any; }) => {
+      this.barchartData.push({
+        'name': user.name,
+        'age': user.age
+      });
+    });
+    this.flags.displayBarChart = true;
+  }
+
+  public exportChart(): void {
+    this.chart.exportImage().then((dataURI) => {
+      saveAs(dataURI, "chart.png");
+    }); 
   }
 
 }

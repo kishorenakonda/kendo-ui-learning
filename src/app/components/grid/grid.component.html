@@ -1,6 +1,6 @@
 <div class="m-t-10">
     <kendo-grid [data]="(gridItems | async)!" [height]="300" [pageSize]="pageSize" [skip]="skip" [pageable]="true"
-        (pageChange)="pageChange($event)">
+        (pageChange)="pageChange($event)" scrollable="virtual">
         <kendo-grid-column field="ProductID" title="ID" [width]="50"> </kendo-grid-column>
         <kendo-grid-column field="ProductName" title="Product Name"> </kendo-grid-column>
         <kendo-grid-column field="Category.CategoryName" title="Category"> </kendo-grid-column>
