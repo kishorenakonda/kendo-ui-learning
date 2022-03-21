@@ -23,6 +23,7 @@
     </kendo-excelexport>
 </div>
 
+<!-- Add user Form -->
 <div class="adduser m-t-10" *ngIf="flags.displayUserForm">
     <form class="k-form" [formGroup]="userForm">
         <fieldset class="k-form-fieldset">
@@ -44,7 +45,7 @@
 
 <!-- List Users -->
 <div class="list-users p-t-10" *ngIf="flags.displayUserList">
-    <kendo-grid [data]="(userList | async)!" [height]="250" [skip]="skip" [pageable]="true" [pageSize]="pageSize"
+    <kendo-grid [data]="(userList | async)!" [height]="450" [skip]="skip" [pageable]="true" [pageSize]="pageSize"
         (pageChange)="onChangePageForUser($event)" [sortable]="true" [sort]="sortDescriptor"
         (sortChange)="onSortUser($event)" [filter]="filter" [filterable]="true" (filterChange)="filterChange($event)"
         (edit)="onEditUser($event)" (save)="onUpdateUser($event)" (cancel)="onCancel($event)"
@@ -62,6 +63,13 @@
         <kendo-grid-column field="id" title="ID"> </kendo-grid-column>
         <kendo-grid-column field="name" title="Name"> </kendo-grid-column>
         <kendo-grid-column field="age" title="Age" filter="numeric" editor="numeric"> </kendo-grid-column>
+
+        <ng-template kendoGridDetailTemplate let-dataItem>
+            <section>
+                <p><strong> City : </strong> {{ dataItem.city }} </p>
+                <p><strong> Mobile : </strong> {{ dataItem.mobile }} </p>
+            </section>
+        </ng-template>
 
         <!-- <kendo-grid-column title="Actions">
             <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
@@ -88,7 +96,7 @@
 </div>
 
 <!-- Bar Chart -->
-<div class="m-t-10" *ngIf="flags.displayBarChart">
+<div class="m-t-20" *ngIf="flags.displayBarChart">
     <button kendoButton (click)="exportChart()">Export as Image</button>
     <kendo-chart #chart style="width: 300px; height: 300px;">
         <kendo-chart-tooltip format="{0}"></kendo-chart-tooltip>
@@ -99,4 +107,37 @@
             </kendo-chart-series-item>
         </kendo-chart-series>
     </kendo-chart>
+</div>
+
+<!-- Tree View -->
+<div class="m-t-10">
+    <div class="box-background">
+        <div class="box-header">
+            Tree View
+        </div>
+        <div class="box-body">
+            <kendo-treeview kendoTreeViewExpandable [nodes]="data" textField="text" [children]="fetchChildren"
+                [hasChildren]="hasChildren">
+            </kendo-treeview>
+
+            <kendo-treeview kendoTreeViewHierarchyBinding kendoTreeViewExpandable [nodes]="data" textField="text"
+                childrenField="items" [filterable]="true">
+            </kendo-treeview>
+        </div>
+    </div>
+</div>
+
+<!-- Kendo Card -->
+<div class="m-t-10">
+    <kendo-card width="360px">
+        <kendo-card-header class="k-hstack">
+            <div>
+                <h1 kendoCardTitle> Kishore Kumar </h1>
+                <p kendoCardSubtitle> Madurai </p>
+            </div>
+        </kendo-card-header>
+        <kendo-card-body>
+            Living in Avaniyapuram, Madurai
+        </kendo-card-body>
+    </kendo-card>
 </div>

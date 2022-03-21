@@ -19,8 +19,13 @@ import { TooltipsModule } from '@progress/kendo-angular-tooltip';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import 'hammerjs';
 import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
-
-
+import { TreeViewModule } from '@progress/kendo-angular-treeview';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+import { KendofeatureComponent } from './components/kendofeature/kendofeature.component';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { DatePipe } from '@angular/common';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { GaugesModule } from '@progress/kendo-angular-gauges';
 
 
 
@@ -31,7 +36,8 @@ import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
     DropdownComponent,
     GridComponent,
     TableComponent,
-    UserComponent
+    UserComponent,
+    KendofeatureComponent
   ],
   imports: [
     BrowserModule,
@@ -47,9 +53,14 @@ import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
     IconsModule,
     TooltipsModule,
     ChartsModule,
-    ExcelExportModule
+    ExcelExportModule,
+    TreeViewModule,
+    LayoutModule,
+    DateInputsModule,
+    DialogsModule,
+    GaugesModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

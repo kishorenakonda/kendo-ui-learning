@@ -71,7 +71,9 @@ export class UserComponent implements OnInit {
 
   public userForm: FormGroup = new FormGroup({
     username: new FormControl(),
-    userage: new FormControl()
+    userage: new FormControl(),
+    usercity: new FormControl(),
+    usermobile: new FormControl()
   });
 
   getUsersList() {
@@ -120,6 +122,8 @@ export class UserComponent implements OnInit {
       'id': this.allUserList[userlistSize - 1].id + 1,
       'name': this.userForm.get("username")?.value,
       'age': this.userForm.get("userage")?.value,
+      'city': this.userForm.get("usercity")?.value,
+      'mobile': this.userForm.get("usermobile")?.value
     }
     console.log("postjson", postJson);
     this.userService.createUser(postJson,
@@ -154,6 +158,9 @@ export class UserComponent implements OnInit {
     // collect the current state of the form
     const user: User = formGroup.value;
     user['id'] = dataItem.id;
+    user['city'] = dataItem.city;
+    user['mobile'] = dataItem.mobile;
+
     console.log("user", user);
     console.log("dataItem", dataItem);
 
@@ -205,7 +212,33 @@ export class UserComponent implements OnInit {
   public exportChart(): void {
     this.chart.exportImage().then((dataURI) => {
       saveAs(dataURI, "chart.png");
-    }); 
+    });
+  }
+
+  public data: any[] = [
+    {
+      text: "Furniture", items: [
+        { text: "Tables & Chairs" },
+        { text: "Sofas" },
+        { text: "Occasional Furniture" }
+      ]
+    }, {
+      text: "Decor", items: [
+        { text: "Bed Linen" },
+        { text: "Curtains & Blinds" },
+        { text: "Carpets" }
+      ]
+    }
+  ];
+
+  public fetchChildren(node: any): Observable<any[]> {
+    //Return the items collection of the parent node as children.
+    return of(node.items);
+  }
+
+  public hasChildren(node: any): boolean {
+    //Check if the parent node has children.
+    return node.items && node.items.length > 0;
   }
 
 }

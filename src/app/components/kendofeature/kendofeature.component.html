@@ -1,0 +1,70 @@
+<kendo-expansionpanel title="Date Time Picker">
+    <!-- date time picker -->
+    <div class="box-background">
+        <div class="box-header">
+            Date Time Picker
+        </div>
+        <div class="box-body">
+            <div class="m-t-10">
+                Selected value is: {{ value | date: format }}
+            </div>
+            <div class="m-t-10">
+                <p>Select date and time:</p>
+                <kendo-datetimepicker [format]="format" [(value)]="value">
+                </kendo-datetimepicker>
+            </div>
+        </div>
+    </div>
+
+    <!-- Multi Calendar -->
+    <div class="box-background">
+        <div class="box-header">
+            Date Range Picker
+        </div>
+        <div class="box-body">
+            <div class="m-t-10">
+                Selected value is: {{ range | json }}
+            </div>
+            <div class="m-t-10">
+                <kendo-multiviewcalendar kendoDateRangeSelection [selectionRange]="range"
+                    (selectionRangeChange)="handleSelectionRange($event)">
+                </kendo-multiviewcalendar>
+            </div>
+        </div>
+    </div>
+</kendo-expansionpanel>
+
+<kendo-expansionpanel title="Dialog">
+    <button kendoButton *ngIf="!opened" (click)="open()"> Open dialog </button>
+    <kendo-dialog *ngIf="opened" (close)="close('cancel')" [width]="400" [height]="300" title="Status">
+        <p style="text-align: center; padding-top: 5em;">
+            Are you sure you want to continue ?
+        </p>
+
+        <kendo-dialog-actions>
+            <button kendoButton themeColor="primary" (click)="close('yes')">
+                Yes
+            </button>
+        </kendo-dialog-actions>
+    </kendo-dialog>
+</kendo-expansionpanel>
+
+<kendo-expansionpanel title="dropdown">
+    <kendo-dropdownlist [data]="listItems" [value]="selectedGame"></kendo-dropdownlist>
+
+    <kendo-multiselect [data]="listItems" [(ngModel)]="selectedMultipleGame" [checkboxes]="{ checkOnClick: false }">
+    </kendo-multiselect>
+</kendo-expansionpanel>
+
+<kendo-expansionpanel title="circular gauge">
+    <div class="">
+        <kendo-label style="position:absolute; padding-left: 80px; top:35px;" [for]="sliderValue" text="Value">
+        </kendo-label>
+        <kendo-slider id="sliderValue" [min]="0" [max]="100" [smallStep]="10" [(ngModel)]="sliderValue"></kendo-slider>
+    </div>
+    <kendo-circulargauge [value]="sliderValue" [colors]="colors">
+        <ng-template kendoCircularGaugeCenterTemplate let-value="sliderValue" let-color="color">
+            <span [style.color]="color">{{ sliderValue }}%</span>
+        </ng-template>
+    </kendo-circulargauge>
+</kendo-expansionpanel>
