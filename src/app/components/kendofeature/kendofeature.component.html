@@ -68,3 +68,50 @@
         </ng-template>
     </kendo-circulargauge>
 </kendo-expansionpanel>
+
+<kendo-expansionpanel title="multi column headers">
+    <kendo-grid [data]="allUserList" scrollable="scrollable" [resizable]="true" [reorderable]="true">
+        <kendo-grid-column field="id" title="ID" [width]="110" [locked]="true">
+            <ng-template kendoGridFooterTemplate let-column let-columnIndex="columnIndex">
+                {{ column.field }}({{ columnIndex }})
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column-group title="User Information" [width]="600" [locked]="false">
+            <kendo-grid-column field="name" title="User Name" [width]="300" [locked]="false">
+                <ng-template kendoGridFooterTemplate let-column let-columnIndex="columnIndex">
+                    {{ column.field }}({{ columnIndex }})
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="age" title="Age" [width]="300" [locked]="false">
+                <ng-template kendoGridFooterTemplate let-column let-columnIndex="columnIndex">
+                    {{ column.field }}({{ columnIndex }})
+                </ng-template>
+            </kendo-grid-column>
+        </kendo-grid-column-group>
+        <kendo-grid-column-group title="More Information" [width]="420" [locked]="false">
+            <kendo-grid-column field="city" title="City" [width]="210" [locked]="false">
+                <ng-template kendoGridFooterTemplate let-column let-columnIndex="columnIndex">
+                    {{ column.field }}({{ columnIndex }})
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="mobile" title="Mobile Number" [width]="210" [locked]="false">
+                <ng-template kendoGridFooterTemplate let-column let-columnIndex="columnIndex">
+                    {{ column.field }}({{ columnIndex }})
+                </ng-template>
+            </kendo-grid-column>
+        </kendo-grid-column-group>
+    </kendo-grid>
+</kendo-expansionpanel>
+
+<kendo-expansionpanel title="column menu">
+    <kendo-grid [kendoGridBinding]="allUserList" [height]="410" [columnMenu]="true" [filterable]="true"
+        [sortable]="true">
+        <kendo-grid-column field="id" title="ID" [width]="100" filter="numeric">
+        </kendo-grid-column>
+        <kendo-grid-column field="name" title="Name"> </kendo-grid-column>
+        <kendo-grid-column field="age" title="Age" [width]="200" filter="numeric">
+        </kendo-grid-column>
+        <kendo-grid-column field="city" title="City" [width]="200"></kendo-grid-column>
+        <kendo-grid-column field="mobile" title="Mobile" [width]="200"></kendo-grid-column>
+    </kendo-grid>
+</kendo-expansionpanel>

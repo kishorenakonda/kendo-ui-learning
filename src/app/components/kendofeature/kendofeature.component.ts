@@ -2,6 +2,8 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { SelectionRange } from '@progress/kendo-angular-dateinputs';
 import { Day, prevDayOfWeek, nextDayOfWeek } from "@progress/kendo-date-math";
+import { UserService } from 'src/app/services/user.service';
+import { products } from 'src/assets/data/data.products';
 
 @Component({
   selector: 'app-kendofeature',
@@ -56,9 +58,13 @@ export class KendofeatureComponent implements OnInit {
     },
   ];
 
-  constructor(private datePipe: DatePipe) { }
+  public allUserList: any = [];
+  public gridData: any[] = products;
+
+  constructor(private datePipe: DatePipe, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.getUsersList();
   }
 
   public handleSelectionRange(range: SelectionRange): void {
@@ -77,6 +83,18 @@ export class KendofeatureComponent implements OnInit {
 
   public open() {
     this.opened = true;
+  }
+
+  public getUsersList() {
+    this.userService.getUser(
+      (response: any) => {
+        this.allUserList = response;
+        console.log(this.allUserList);
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    )
   }
 
 }
