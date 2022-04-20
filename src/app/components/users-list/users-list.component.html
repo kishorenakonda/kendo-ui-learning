@@ -1,0 +1,21 @@
+<div>
+    <table class="table">
+        <thead>
+            <th scope="col"> S.No </th>
+            <th scope="col"> Name </th>
+            <th scope="col"> Age </th>
+            <th scope="col"> City </th>
+            <th scope="col"> Mobile </th>
+        </thead>
+
+        <tbody *ngIf="userList && userList.length > 0">
+            <tr *ngFor="let userObj of userList; let rowIndex=index">
+                <td> {{rowIndex + 1}} </td>
+                <td> {{userObj.name}} </td>
+                <td> {{userObj.age}} </td>
+                <td> {{userObj.city}} </td>
+                <td> {{userObj.mobile}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

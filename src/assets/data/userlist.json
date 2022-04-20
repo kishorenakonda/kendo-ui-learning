@@ -27,6 +27,13 @@
       "age": 13,
       "city": "chennai",
       "mobile": "0898898989"
+    },
+    {
+      "name": "kumar",
+      "age": 37,
+      "id": 6,
+      "city": "madurai",
+      "mobile": "0898898989"
     }
   ]
 }

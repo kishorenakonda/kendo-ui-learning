@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppEventsComponent } from './components/app-events/app-events.component';
 import { KendofeatureComponent } from './components/kendofeature/kendofeature.component';
 import { TableComponent } from './components/table/table.component';
 import { UserComponent } from './components/user/user.component';
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: "kendocomponents",
     component: KendofeatureComponent
+  },
+  {
+    path: "appevents",
+    component: AppEventsComponent
   }
 ];
 

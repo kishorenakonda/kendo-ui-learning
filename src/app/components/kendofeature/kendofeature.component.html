@@ -115,3 +115,14 @@
         <kendo-grid-column field="mobile" title="Mobile" [width]="200"></kendo-grid-column>
     </kendo-grid>
 </kendo-expansionpanel>
+
+<kendo-expansionpanel title="Input Focus">
+    <input kendoTextBox (keydown)="onValueChange($event)" id="eventName" required maxlength="60"
+        pattern="^[a-zA-Z0-9 \b]+$" />
+
+    <input kendoTextBox (keydown)="onValueChange($event)" id="eventName" required maxlength="60"
+        pattern="^[a-zA-Z0-9 \b]+$" />
+
+    <input kendoTextBox (keydown)="onValueChange($event)" id="eventName" required maxlength="60"
+        pattern="^[a-zA-Z0-9 \b]+$" />
+</kendo-expansionpanel>

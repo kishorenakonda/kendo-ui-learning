@@ -1,0 +1,8 @@
+<div class="">
+    Name : <input type="text" [(ngModel)]="searchByName" class="input-css form-control" />
+    City : <input type="text" [(ngModel)]="searchByCity" class="input-css form-control" />
+    <button type="btn btn-primary" (click)="onSearch()"> Search </button>
+</div>
+<div class="m-t-10">
+    <app-users-list></app-users-list>
+</div>

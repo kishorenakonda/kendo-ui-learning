@@ -26,9 +26,9 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { DatePipe } from '@angular/common';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { GaugesModule } from '@progress/kendo-angular-gauges';
-
-
-
+import { InputFocus } from './directives/common.directives';
+import { AppEventsComponent } from './components/app-events/app-events.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,10 @@ import { GaugesModule } from '@progress/kendo-angular-gauges';
     GridComponent,
     TableComponent,
     UserComponent,
-    KendofeatureComponent
+    KendofeatureComponent,
+    InputFocus,
+    AppEventsComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule,

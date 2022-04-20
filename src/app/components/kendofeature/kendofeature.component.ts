@@ -97,4 +97,8 @@ export class KendofeatureComponent implements OnInit {
     )
   }
 
+  public onValueChange(event: any){
+    console.log(event);
+  }
+
 }
