@@ -126,3 +126,23 @@
     <input kendoTextBox (keydown)="onValueChange($event)" id="eventName" required maxlength="60"
         pattern="^[a-zA-Z0-9 \b]+$" />
 </kendo-expansionpanel>
+
+<kendo-expansionpanel title="div class focus on tab key">
+    <div class="action-icon home-icon" id="action-icon" (click)="onNavigateTo($event)" tabindex="0"></div>
+</kendo-expansionpanel>
+
+<kendo-expansionpanel title="kendo menu">
+    <kendo-menu [items]="kendomenuitems"> </kendo-menu>
+</kendo-expansionpanel>
+
+<kendo-expansionpanel title="object flag status">
+    <div> Paid On Committed </div>
+    == {{alModelInputRecord?.paidOnCommitted | json}}
+    <div class="grid-column" *ngIf="alModelInputRecord.paidOnCommitted">
+        {{alModelInputRecord?.paidOnCommitted ? 'Yes' : 'No'}}
+    </div>
+    <div class="grid-column" *ngIf="!alModelInputRecord.paidOnCommitted"></div>
+
+    <div class="grid-column" *ngIf="alModelInputRecord?.paidOnCommitted"> It is Yes </div>
+    <div class="grid-column" *ngIf="!alModelInputRecord?.paidOnCommitted"> It is No </div>
+</kendo-expansionpanel>

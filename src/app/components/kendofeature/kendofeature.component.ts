@@ -1,9 +1,15 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { SelectionRange } from '@progress/kendo-angular-dateinputs';
-import { Day, prevDayOfWeek, nextDayOfWeek } from "@progress/kendo-date-math";
 import { UserService } from 'src/app/services/user.service';
 import { products } from 'src/assets/data/data.products';
+
+export class FlagsModel {
+  constructor(
+    public displaySubmitButton: boolean,
+  ) { }
+}
 
 @Component({
   selector: 'app-kendofeature',
@@ -11,6 +17,8 @@ import { products } from 'src/assets/data/data.products';
   styleUrls: ['./kendofeature.component.css']
 })
 export class KendofeatureComponent implements OnInit {
+  @ViewChild("submitBtn") submitButtonRef!: ElementRef;
+
   public value: Date = new Date();
   public format = "MM/dd/yyyy HH:mm";
 
@@ -61,10 +69,41 @@ export class KendofeatureComponent implements OnInit {
   public allUserList: any = [];
   public gridData: any[] = products;
 
-  constructor(private datePipe: DatePipe, private userService: UserService) { }
+  public kendomenuitems: any[] = [
+    {
+      text: 'Item1',
+      items: [{ text: 'Item1.1' }, { text: 'Item1.2', items: [{ text: 'Item1.2.1' }] }]
+    },
+    {
+      text: 'Item2',
+      items: [{ text: 'Item2.1' }]
+    }
+  ];
+
+  public alModelInputRecord: any = {};
+
+  public flags: any = {
+    displaySubmitButton: Boolean
+  };
+
+  constructor(private datePipe: DatePipe, private userService: UserService, private router: Router) {
+  }
 
   ngOnInit(): void {
+    this.alModelInputRecord['paidOnCommitted'] = false;
+    this.flags.displaySubmitButton = true;
+
     this.getUsersList();
+    this.listenToActionIcons();
+  }
+
+  public listenToActionIcons() {
+    const actionIconElement = document.getElementById("action-icon");
+    actionIconElement?.addEventListener('keypress', (event) => {
+      if (event.key == 'Enter') {
+        this.router.navigate(['/appevents']);
+      }
+    });
   }
 
   public handleSelectionRange(range: SelectionRange): void {
@@ -97,8 +136,17 @@ export class KendofeatureComponent implements OnInit {
     )
   }
 
-  public onValueChange(event: any){
+  public onValueChange(event: any) {
     console.log(event);
+  }
+
+  public onNavigateTo(event: any) {
+    console.log("event from navigate", event);
+    this.router.navigate(['/appevents']);
+  }
+
+  public onSubmit() {
+    alert("Submit is clicked");
   }
 
 }

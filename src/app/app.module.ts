@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
@@ -24,11 +23,13 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
 import { KendofeatureComponent } from './components/kendofeature/kendofeature.component';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { DatePipe } from '@angular/common';
-import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { GaugesModule } from '@progress/kendo-angular-gauges';
 import { InputFocus } from './directives/common.directives';
 import { AppEventsComponent } from './components/app-events/app-events.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { MenuModule } from '@progress/kendo-angular-menu';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { UsersListComponent } from './components/users-list/users-list.component
     LayoutModule,
     DateInputsModule,
     DialogsModule,
-    GaugesModule
+    GaugesModule,
+    MenuModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

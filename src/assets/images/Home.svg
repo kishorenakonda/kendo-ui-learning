@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="82.095" height="80.935" viewBox="0 0 82.095 80.935">
+  <defs>
+    <filter id="Menu" x="0" y="0" width="82.095" height="80.935" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Home" transform="translate(15.758 12.726)">
+    <g transform="matrix(1, 0, 0, 1, -15.76, -12.73)" filter="url(#Menu)">
+      <path id="Menu-2" data-name="Menu" d="M41.6,16.5l-5.589-9.68A7.883,7.883,0,0,0,29.179,2.88H18a7.883,7.883,0,0,0-6.827,3.942L5.585,16.5a7.883,7.883,0,0,0,0,7.883l5.589,9.68A7.883,7.883,0,0,0,18,38.007H29.179a7.883,7.883,0,0,0,6.827-3.941l5.589-9.68a7.883,7.883,0,0,0,0-7.883" transform="translate(30.84 7.97) rotate(30)" fill="#313131" stroke="#5d5d5d" stroke-width="1"/>
+    </g>
+    <g id="Icon_feather-home" data-name="Icon feather-home" transform="translate(17.728 16.5)">
+      <path id="Path_18" data-name="Path 18" d="M4.5,8.95,12.15,3,19.8,8.95V18.3A1.7,1.7,0,0,1,18.1,20H6.2a1.7,1.7,0,0,1-1.7-1.7Z" transform="translate(-4.5 -3)" fill="none" stroke="#00adb5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <path id="Path_19" data-name="Path 19" d="M13.5,26.5V18h5.1v8.5" transform="translate(-8.4 -9.5)" fill="none" stroke="#00adb5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>
