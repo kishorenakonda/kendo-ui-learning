@@ -21,4 +21,12 @@
   <kendo-label class="k-radio-label" [for]="tableWithFilter" text="Table With Filter"></kendo-label>
 </div> -->
 
+<div class="">
+  <ul>
+    <li class="cursor-pointer" *ngFor="let component of componentList" (click)="onRouteTo(component)">
+      {{component}}
+    </li>
+  </ul>
+</div>
+
 <router-outlet></router-outlet>

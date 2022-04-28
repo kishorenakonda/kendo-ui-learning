@@ -14,6 +14,8 @@ export class AppComponent {
     tableType: "",
   };
 
+  public componentList: Array<String> = ['user', 'kendocomponents', 'table', 'appevents'];
+
   constructor(private router: Router) {
     this.showTable = true;
     this.filterObj = {
@@ -35,5 +37,10 @@ export class AppComponent {
     if (this.model.tableType.toLowerCase() === 'plaintable') {
       this.router.navigate(['/table']);
     }
+  }
+
+  onRouteTo(component: String) {
+    console.log(component);
+    this.router.navigate([`/${component}`]);
   }
 }

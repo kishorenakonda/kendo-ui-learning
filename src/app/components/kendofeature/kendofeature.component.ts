@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SelectionRange } from '@progress/kendo-angular-dateinputs';
 import { UserService } from 'src/app/services/user.service';
@@ -16,7 +16,7 @@ export class FlagsModel {
   templateUrl: './kendofeature.component.html',
   styleUrls: ['./kendofeature.component.css']
 })
-export class KendofeatureComponent implements OnInit {
+export class KendofeatureComponent implements OnInit, AfterViewInit {
   @ViewChild("submitBtn") submitButtonRef!: ElementRef;
 
   public value: Date = new Date();
@@ -97,6 +97,10 @@ export class KendofeatureComponent implements OnInit {
     this.listenToActionIcons();
   }
 
+  ngAfterViewInit(): void {
+    this.scrollToButton();
+  }
+
   public listenToActionIcons() {
     const actionIconElement = document.getElementById("action-icon");
     actionIconElement?.addEventListener('keypress', (event) => {
@@ -104,6 +108,13 @@ export class KendofeatureComponent implements OnInit {
         this.router.navigate(['/appevents']);
       }
     });
+  }
+
+  public scrollToButton() {
+    let buttonElement = document.getElementById('submit-btn');
+    if (buttonElement) {
+      buttonElement.scrollIntoView();
+    }
   }
 
   public handleSelectionRange(range: SelectionRange): void {

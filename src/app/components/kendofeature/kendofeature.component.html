@@ -146,3 +146,7 @@
     <div class="grid-column" *ngIf="alModelInputRecord?.paidOnCommitted"> It is Yes </div>
     <div class="grid-column" *ngIf="!alModelInputRecord?.paidOnCommitted"> It is No </div>
 </kendo-expansionpanel>
+
+<div class="m-t-20" *ngIf="flags.displaySubmitButton">
+    <button class="btn btn-primary" (click)="onSubmit()" id="submit-btn"> Submit </button>
+</div>
