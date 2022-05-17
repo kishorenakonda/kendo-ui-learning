@@ -14,7 +14,7 @@ export class AppComponent {
     tableType: "",
   };
 
-  public componentList: Array<String> = ['user', 'kendocomponents', 'table', 'appevents'];
+  public componentList: Array<String> = ['user', 'kendocomponents', 'table', 'appevents', 'scsslearning'];
 
   constructor(private router: Router) {
     this.showTable = true;

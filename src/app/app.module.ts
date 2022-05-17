@@ -30,6 +30,7 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { MenuModule } from '@progress/kendo-angular-menu';
+import { ScssLearningComponent } from './components/scss-learning/scss-learning.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MenuModule } from '@progress/kendo-angular-menu';
     KendofeatureComponent,
     InputFocus,
     AppEventsComponent,
-    UsersListComponent
+    UsersListComponent,
+    ScssLearningComponent
   ],
   imports: [
     BrowserModule,

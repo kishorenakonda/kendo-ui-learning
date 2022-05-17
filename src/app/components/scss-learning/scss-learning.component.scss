@@ -1,0 +1,11 @@
+@mixin important-text {
+  color: red;
+  font-size: 25px;
+  font-weight: bold;
+  border: 1px solid blue;
+}
+
+.highlight-text {
+  @include important-text;
+  background: #f1f1f2;
+}
