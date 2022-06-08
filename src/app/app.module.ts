@@ -31,6 +31,8 @@ import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { MenuModule } from '@progress/kendo-angular-menu';
 import { ScssLearningComponent } from './components/scss-learning/scss-learning.component';
+import { SpecialCharacterRouterparamComponent } from './components/special-character-routerparam/special-character-routerparam.component';
+import { SpecialCharacterQueryparamComponent } from './components/special-character-queryparam/special-character-queryparam.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { ScssLearningComponent } from './components/scss-learning/scss-learning.
     InputFocus,
     AppEventsComponent,
     UsersListComponent,
-    ScssLearningComponent
+    ScssLearningComponent,
+    SpecialCharacterRouterparamComponent,
+    SpecialCharacterQueryparamComponent
   ],
   imports: [
     BrowserModule,

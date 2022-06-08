@@ -72,7 +72,13 @@
 <kendo-expansionpanel title="multi column headers">
     <div class="multi-column-headers">
         <kendo-grid [data]="allUserList" [resizable]="true" [scrollable]="'virtual'" [rowHeight]="34" [resizable]="true"
-            [reorderable]="true">
+            [reorderable]="true" [selectable]="selectableSettings">
+            <kendo-grid-checkbox-column [width]="50" [showSelectAll]="true">
+                <ng-template kendoGridHeaderTemplate>
+                    <input kendoGridSelectAllCheckbox type="checkbox" (selectAllChange)="selectAllChange($event)" />
+                </ng-template>
+            </kendo-grid-checkbox-column>
+
             <kendo-grid-column field="id" title="ID" [width]="110" [locked]="true">
                 <ng-template kendoGridFooterTemplate let-column let-columnIndex="columnIndex">
                     {{ column.field }}({{ columnIndex }})
@@ -165,3 +171,7 @@
 <div class="m-t-20" *ngIf="flags.displaySubmitButton">
     <button class="btn btn-primary" (click)="onSubmit()" id="submit-btn"> Submit </button>
 </div>
+
+<kendo-expansionpanel title="kendo switch">
+    <kendo-switch [(ngModel)]="switchValue" (valueChange)="onSwitchValueChange()"></kendo-switch>
+</kendo-expansionpanel>

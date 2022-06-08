@@ -86,6 +86,13 @@ export class KendofeatureComponent implements OnInit, AfterViewInit {
     displaySubmitButton: Boolean
   };
 
+  public selectableSettings: any = {
+    multiple: true,
+    checkboxOnly: true
+  }
+
+  public switchValue: boolean = true;
+
   constructor(private datePipe: DatePipe, private userService: UserService, private router: Router) {
   }
 
@@ -160,4 +167,11 @@ export class KendofeatureComponent implements OnInit, AfterViewInit {
     alert("Submit is clicked");
   }
 
+  public selectAllChange(event: any) {
+    console.log("select all evet", event);
+  }
+
+  public onSwitchValueChange() {
+    console.log("switch value");
+  }
 }

@@ -13,6 +13,7 @@ export class AppComponent {
   public model = {
     tableType: "",
   };
+  public paramValue: any;
 
   public componentList: Array<String> = ['user', 'kendocomponents', 'table', 'appevents', 'scsslearning'];
 
@@ -22,6 +23,11 @@ export class AppComponent {
       filterTerm: null,
       skip: 0
     };
+
+    // this.paramValue = '003366';
+    this.paramValue = '003/366'
+    // this.paramValue = '003#366';
+    // this.paramValue = '003@366'
   }
 
   onEmitFilter(filterObj: any) {
@@ -33,7 +39,6 @@ export class AppComponent {
   }
 
   onChangeTableType() {
-    console.log("tableType", this.model);
     if (this.model.tableType.toLowerCase() === 'plaintable') {
       this.router.navigate(['/table']);
     }
@@ -42,5 +47,20 @@ export class AppComponent {
   onRouteTo(component: String) {
     console.log(component);
     this.router.navigate([`/${component}`]);
+  }
+
+  onRouteToSpecialCharacterRouterParam() {
+    this.router.navigate(['/special-character-router-param/' + this.paramValue]);
+
+    // const encodedValue = encodeURIComponent(this.paramValue);
+    // this.router.navigate(['/special-character-router-param/' + encodedValue]);
+  }
+
+  onRouteToSpecialCharacterQueryParam() {
+    this.router.navigate(['/special-character-query-param/'], {
+      queryParams: {
+        id: this.paramValue
+      }
+    });
   }
 }
