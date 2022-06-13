@@ -8,4 +8,7 @@
 </div> -->
 
 <app-dropdown (filterEmitter)="onEmitFilter($event)"></app-dropdown>
-<app-grid [filterInput]="filterObj" *ngIf="showTable"></app-grid>
+
+<button class="btn btn-primary" (click)="onExcelExport()"> Export From External Component </button>
+
+<app-custom-grid [filterInput]="filterObj" *ngIf="showTable"></app-custom-grid>

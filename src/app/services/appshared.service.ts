@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AppSharedService {
+
+    public excelExportObserver = new BehaviorSubject<boolean>(false);
+    public excelExportSubscription: Observable<boolean>;
+
+    constructor() {
+        this.excelExportSubscription = this.excelExportObserver.asObservable();
+    }
+
     /**
      * @method - Sorting the Array based on the key
      * @param list - Array List
@@ -48,6 +57,10 @@ export class AppSharedService {
                 return sortedList;
             }
         }
+    }
+
+    setExcelExportDownloadStatus(status: boolean) {
+        this.excelExportObserver.next(status);
     }
 
 }

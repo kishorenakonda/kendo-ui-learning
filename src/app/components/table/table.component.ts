@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppSharedService } from 'src/app/services/appshared.service';
 
 @Component({
   selector: 'app-table',
@@ -14,7 +15,7 @@ export class TableComponent implements OnInit {
     tableType: "",
   };
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private appSharedService: AppSharedService) {
     this.showTable = true;
     this.filterObj = {
       filterTerm: null,
@@ -32,6 +33,11 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  onExcelExport() {
+    console.log("excel export");
+    this.appSharedService.setExcelExportDownloadStatus(true);
   }
 
 }

@@ -4,9 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GridModule } from '@progress/kendo-angular-grid';
+import { ExcelModule, GridModule } from '@progress/kendo-angular-grid';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
-import { GridComponent } from './components/grid/grid.component';
 import { TableComponent } from './components/table/table.component';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from "@progress/kendo-angular-label";
@@ -17,7 +16,6 @@ import { IconsModule } from '@progress/kendo-angular-icons';
 import { TooltipsModule } from '@progress/kendo-angular-tooltip';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import 'hammerjs';
-import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
 import { TreeViewModule } from '@progress/kendo-angular-treeview';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { KendofeatureComponent } from './components/kendofeature/kendofeature.component';
@@ -33,12 +31,12 @@ import { MenuModule } from '@progress/kendo-angular-menu';
 import { ScssLearningComponent } from './components/scss-learning/scss-learning.component';
 import { SpecialCharacterRouterparamComponent } from './components/special-character-routerparam/special-character-routerparam.component';
 import { SpecialCharacterQueryparamComponent } from './components/special-character-queryparam/special-character-queryparam.component';
+import { CustomGridComponent } from './components/custom-grid/custom-grid.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DropdownComponent,
-    GridComponent,
     TableComponent,
     UserComponent,
     KendofeatureComponent,
@@ -47,7 +45,8 @@ import { SpecialCharacterQueryparamComponent } from './components/special-charac
     UsersListComponent,
     ScssLearningComponent,
     SpecialCharacterRouterparamComponent,
-    SpecialCharacterQueryparamComponent
+    SpecialCharacterQueryparamComponent,
+    CustomGridComponent
   ],
   imports: [
     BrowserModule,
@@ -63,13 +62,13 @@ import { SpecialCharacterQueryparamComponent } from './components/special-charac
     IconsModule,
     TooltipsModule,
     ChartsModule,
-    ExcelExportModule,
     TreeViewModule,
     LayoutModule,
     DateInputsModule,
     DialogsModule,
     GaugesModule,
-    MenuModule
+    MenuModule,
+    ExcelModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
