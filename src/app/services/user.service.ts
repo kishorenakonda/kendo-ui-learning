@@ -28,4 +28,9 @@ export class UserService {
     updateUser(user: any, successFn: Function, errorFn: Function) {
         return this.httpService.put(`${this.userServiceUrls.list + '/' + user.id}`, user, successFn, errorFn);
     }
+
+    getCountries(successFn: Function, errorFn: Function) {
+        const url = 'https://restcountries.eu/rest/v2/all';
+        return this.httpService.get(url, successFn, errorFn);
+    }
 }
